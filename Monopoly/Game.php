@@ -1,7 +1,9 @@
 <?php
+require_once "Classes/Dices.php";
+require_once "Classes/PageConstructors/FieldConstructor.php";
 
 use Classes\Dices;
-require_once "Classes/Dices.php";
+use Classes\PageConstructors\FieldConstructor;
 
 $dicesObj = new Dices();
 $dicesObj->ThrowDices();
@@ -17,6 +19,7 @@ $dicesObj->ThrowDices();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/styles.css">
     <?php $dicesObj->EchoHeader();?>
+    <?php FieldConstructor::EchoStyle();?>
     <title>Document</title>
 </head>
 <body>
@@ -24,12 +27,23 @@ $dicesObj->ThrowDices();
 <div class="MonopolyField">
     <img src="/Images/MonopolyField.png" alt="">
 </div>
+<?php FieldConstructor::EchoField();?>
 <?php $dicesObj->EchoDicesImages();?>
 </body>
 <footer>
     <div>
         <code>Project making by Unezhev A.I.</code>
     </div>
+    <script ></script>
+    <script type="module" >
+        import DiceThrower from "./JS/ThrowDicesLogic.js";
+        DiceThrower.Initialize(770,670,500,300);
+        DiceThrower.RepositionDice();
+    </script>
+    <script type="module" >
+        import FieldResizer from "./JS/FieldResizer.js"
+        FieldResizer.ResizeContainer(".MonopolyField > div", "<?php FieldConstructor::GetContainerLocator()?>");
+    </script>
 </footer>
 <script src="JS/ThrowDicesLogic.js"></script>
 </html>

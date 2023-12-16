@@ -31,6 +31,7 @@ footer div {
     height: fit-content;
     width: fit-content;
     margin: 0 auto;
+    align-self: center;
 }
 
 .MonopolyField img{
